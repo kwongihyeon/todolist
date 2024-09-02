@@ -7,14 +7,12 @@ function App() {
 
   const onchange = (e) => {
     Setadd(e.target.value);
-    console.log(add);
   };
 
   const onclick = () => {
     let cp = [...list];
     cp.unshift(add);
     Setlist(cp);
-    console.log(list);
   };
 
   return (
@@ -23,7 +21,11 @@ function App() {
         <input onChange={onchange}></input>
         <button onClick={onclick}>+</button>
       </div>
-      <div>{list}</div>
+      <div>
+        {list.map((n, i) => (
+          <div key={i}>{n}</div>
+        ))}
+      </div>
     </div>
   );
 }

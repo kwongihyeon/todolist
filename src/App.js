@@ -10,8 +10,7 @@ function App() {
   };
 
   const onclick = () => {
-    let cp = [...list];
-    cp.unshift(add);
+    let cp = [...list, add];
     Setlist(cp);
   };
 

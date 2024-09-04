@@ -2,7 +2,7 @@ import React from "react";
 
 const Mycompo = ({ n, ondelete, onupdate }) => {
   return (
-    <div key={n.id}>
+    <div>
       <span>{n.text}</span>
       <button
         onClick={() => {

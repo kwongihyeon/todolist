@@ -43,8 +43,8 @@ function App() {
         <button onClick={onclick}>+</button>
       </div>
       <div>
-        {list.map((n) => (
-          <Mycompo n={n} ondelete={ondelete} onupdate={onupdate} />
+        {list.map((n, index) => (
+          <Mycompo n={n} ondelete={ondelete} onupdate={onupdate} key={n.id} />
         ))}
       </div>
     </div>

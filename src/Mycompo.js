@@ -1,9 +1,9 @@
 import React from "react";
 
-const Mycompo = (n, ondelete, onupdate) => {
+const Mycompo = ({ n, ondelete, onupdate }) => {
   return (
     <div key={n.id}>
-      <span>{n.i.text}</span>
+      <span>{n.text}</span>
       <button
         onClick={() => {
           ondelete(n.id);

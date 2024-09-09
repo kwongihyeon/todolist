@@ -1,6 +1,6 @@
 import React from "react";
 
-const Mycompo = ({ n, checkclick, onupdate }) => {
+const Mycompo = ({ n, checkclick, onupdate, ondelete }) => {
   const style = n.switch
     ? { fontSize: "20px", color: "white" }
     : { fontSize: "15px", color: "blue" };
@@ -14,6 +14,13 @@ const Mycompo = ({ n, checkclick, onupdate }) => {
           checkclick(n.id);
         }}
       ></button>
+      <button
+        onClick={() => {
+          ondelete(n.id);
+        }}
+      >
+        x
+      </button>
       <button
         onClick={() => {
           onupdate(n.id);

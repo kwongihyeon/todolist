@@ -9,12 +9,13 @@ function App() {
   let [list, Setlist] = useState([]);
   let [add, Setadd] = useState("");
   let [exam, Setexam] = useState(1);
+  let [render, Setrender] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:3000/list")
       .then((response) => response.json())
       .then((data) => Setlist(data));
-  }, []);
+  }, [render]);
   const onchange = (e) => {
     Setadd(e.target.value);
   };
@@ -42,21 +43,35 @@ function App() {
     Setadd("");
   };
 
-  /*   const ondelete = (id) => {
+  const ondelete = (id) => {
     let cp2 = [...list];
     let dt = cp2.filter((cp2) => id !== cp2.id);
-    Setlist(dt);
-  }; */
+
+    fetch(`http://localhost:3000/list/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dt),
+    }).then(() => Setrender(!render));
+  };
 
   const checkclick = (id) => {
-    const sibal = list.map((n) =>
-      n.id === id ? { ...n, switch: !n.switch } : n
-    );
-    Setlist(sibal);
+    const sibal = list.find((n) => n.id === id);
+    const yummy = { ...sibal, switch: !sibal.switch };
+
+    fetch(`http://localhost:3000/list/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(yummy),
+    }).then(() => Setrender(!render));
   };
 
   const onupdate = (id) => {
     const bs = list.find((n) => n.id === id);
+    console.log(bs);
 
     const cbs = { ...bs, text: add };
     fetch(`http://localhost:3000/list/${id}`, {
@@ -69,7 +84,6 @@ function App() {
       .then((res) => res.json())
       .then((up) => {
         const uplist = list.map((n) => (n.id === id ? { ...n, text: add } : n));
-        console.log(list);
         Setlist(uplist);
       })
       .catch((error) => console.error("수정에러", error));
@@ -90,6 +104,7 @@ function App() {
         {list.map((n, index) => (
           <Mycompo
             n={n}
+            ondelete={ondelete}
             checkclick={checkclick}
             onupdate={onupdate}
             key={n.id}

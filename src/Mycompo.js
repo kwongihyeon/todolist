@@ -1,6 +1,6 @@
 import React from "react";
 
-const Mycompo = ({ n, checkclick, onupdate, on }) => {
+const Mycompo = ({ n, checkclick, onupdate }) => {
   const style = n.switch
     ? { fontSize: "20px", color: "white" }
     : { fontSize: "15px", color: "blue" };

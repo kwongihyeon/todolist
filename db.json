@@ -1,8 +1,18 @@
 {
   "list": [
     {
-      "id": 100,
-      "text": "안녕",
+      "id": "019e8c21-e44c-3b20-afde-d180fbe063a6",
+      "text": "q",
+      "switch": false
+    },
+    {
+      "id": "f6edfd4b-9a20-62f1-3544-1c45a49b447d",
+      "text": "w",
+      "switch": false
+    },
+    {
+      "id": "5f0a57b2-1216-1843-3f7f-2479d08430b4",
+      "text": "e",
       "switch": false
     }
   ]

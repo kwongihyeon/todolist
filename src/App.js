@@ -8,7 +8,6 @@ import uuid from "react-uuid";
 function App() {
   let [list, Setlist] = useState([]);
   let [add, Setadd] = useState("");
-  let [number, Setnumber] = useState(1);
   let [exam, Setexam] = useState(1);
 
   useEffect(() => {
@@ -37,7 +36,6 @@ function App() {
       .then((res) => res.json())
       .then((plus) => {
         Setlist([...list, plus]);
-        Setnumber(number + 1);
       })
       .catch((error) => console.error("에러", error));
 
@@ -60,12 +58,13 @@ function App() {
   const onupdate = (id) => {
     const bs = list.find((n) => n.id === id);
 
+    const cbs = { ...bs, text: add };
     fetch(`http://localhost:3000/list/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(bs),
+      body: JSON.stringify(cbs),
     })
       .then((res) => res.json())
       .then((up) => {
